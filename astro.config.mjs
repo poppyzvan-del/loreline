@@ -8,7 +8,7 @@ import mdx from '@astrojs/mdx';
 // 注：@astrojs/sitemap 暂时移除（当前版本与 Astro 4.16 存在 reduce 兼容问题）。
 // 部署后如需 sitemap，可手动生成或换用 astro-robots/sitemap 替代方案。
 export default defineConfig({
-  site: 'https://loreline.example.com', // 部署后改为真实域名
+  site: 'https://loreline-kappa.vercel.app', // 部署后改为真实域名（绑自定义域名后再换）
   integrations: [
     tailwind({ applyBaseStyles: false }),
     mdx(),
