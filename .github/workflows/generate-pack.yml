@@ -1,0 +1,90 @@
+name: Generate Pack (AI)
+
+# 后期 AI 自动化生产管线（第二阶段）
+# 双触发：
+#   - schedule: 每周一上午生成一次候选 Pack（cron 用 UTC）
+#   - workflow_dispatch: 手动触发，可选 pack-type
+# 流程：
+#   1. checkout 仓库
+#   2. 读取 prompts/<pack-type>.md 作为模板 prompt
+#   3. 调 LLM（TapTap MCP endpoint 或 OpenAI-compatible API）按模板填槽生成 markdown
+#   4. 写入 src/content/packs/<slug>.md
+#   5. 开新分支 + gh pr create
+#   6. 人工在 GitHub UI 审核 → merge 触发 Vercel 自动部署
+# 质量门永不跳过：每 Pack 人工改写 ≥30%
+
+on:
+  schedule:
+    # 每周一 09:00 UTC = 北京 17:00
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+    inputs:
+      pack_type:
+        description: '要生成的 Pack 类型（对应 prompts/ 下的模板文件名）'
+        type: choice
+        options:
+          - dialogue
+          - glossary
+          - style-guide
+        default: dialogue
+      slug_hint:
+        description: '可选：slug 提示（如 arpg-female-protagonist）'
+        type: string
+        required: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    # 仅在 main 分支触发；依赖密钥，未配置时自动失败提示
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check required secrets
+        id: secrets
+        run: |
+          if [ -z "${{ secrets.LLM_API_KEY }}" ] && [ -z "${{ secrets.TAPTAP_ENDPOINT }}" ]; then
+            echo "::error::未配置 LLM_API_KEY 或 TAPTAP_ENDPOINT secret，无法生成 Pack。请在 repo Settings → Secrets 配置其一。"
+            exit 1
+          fi
+          echo "secrets_ok=true" >> $GITHUB_OUTPUT
+
+      - name: Generate Pack markdown
+        env:
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          TAPTAP_ENDPOINT: ${{ secrets.TAPTAP_ENDPOINT }}
+          PACK_TYPE: ${{ inputs.pack_type || 'dialogue' }}
+          SLUG_HINT: ${{ inputs.slug_hint }}
+        run: node scripts/generate-pack.mjs
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore(pack): AI 生成候选 Pack [skip deploy]"
+          branch: "auto/pack-${{ inputs.pack_type || 'dialogue' }}-${{ github.run_id }}"
+          title: "AI 候选 Pack：${{ inputs.pack_type || 'dialogue' }}（待人工审核）"
+          body: |
+            此 PR 由 `generate-pack.yml` 自动生成。
+
+            **审核清单**（人工改写 ≥30% 后方可 merge）：
+            - [ ] 独特性：与现有 Pack 不重复
+            - [ ] 实用性：可被目标客户直接使用
+            - [ ] 无幻觉：术语/事实正确，英文母语级
+            - [ ] frontmatter 完整：lsCheckoutUrl 留空或填入真实链接
+            - [ ] 免费样例 CSV 已生成
+            - [ ] 人工改写比例 ≥30%
+
+            merge 后 Vercel 自动部署。
+          labels: ai-generated, needs-review
+          draft: false

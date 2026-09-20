@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="感谢订阅"
+  description="订阅成功。"
+  bare={true}
+>
+  <section class="flex min-h-screen flex-col items-center justify-center bg-brand-950 px-6 text-center text-white">
+    <div class="max-w-lg">
+      <div class="text-5xl">✓</div>
+      <h1 class="mt-6 text-3xl font-bold text-white">收到邮箱</h1>
+      <p class="mt-3 text-brand-200">
+        如果是订阅提醒：你已加入列表，新 Pack 上架会第一时间通知你。
+      </p>
+      <p class="mt-2 text-brand-300">
+        如果是领取样例：样例文件应已附在确认邮件里，请检查收件箱（含垃圾邮件夹）。
+      </p>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
+        <a href="/packs" class="btn-gold">去看看 Pack</a>
+        <a href="/" class="btn-outline border-brand-700 text-white hover:bg-brand-800">回首页</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

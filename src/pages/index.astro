@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PackCard from '../components/PackCard.astro';
+import { getCollection } from 'astro:content';
+
+const allPacks = (await getCollection('packs', ({ data }) => !data.draft))
+  .sort((a, b) => +b.data.publishedAt - +a.data.publishedAt);
+const featured = allPacks.filter((p) => p.data.featured).slice(0, 3);
+const showcase = featured.length > 0 ? featured : allPacks.slice(0, 3);
+---
+
+<BaseLayout
+  title="Loreline — 游戏本地化与叙事 Asset Pack"
+  description="为独立游戏开发者与中小手游团队提供中英双语台词库、本地化术语表、叙事风格指南。可商用，一次购买长期复用。"
+>
+  <!-- Hero -->
+  <section class="relative overflow-hidden bg-brand-950 text-white">
+    <div class="absolute inset-0 bg-gradient-to-br from-brand-900 via-brand-950 to-brand-900"></div>
+    <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 20% 30%, #d4a44e 0, transparent 40%);"></div>
+    <div class="container-wide relative py-20 md:py-28">
+      <div class="max-w-3xl">
+        <span class="badge-gold">游戏叙事 × 本地化 × Asset Pack</span>
+        <h1 class="mt-5 text-4xl font-bold leading-tight text-white md:text-6xl">
+          把稀缺叙事技能<br />
+          <span class="text-gold-500">资产化</span>，无限复用
+        </h1>
+        <p class="mt-6 text-lg text-brand-200">
+          中英双语台词库、本地化术语表、叙事风格指南——为独立游戏开发者与中小手游团队准备的、可直接落进项目的数字资产包。一次购买，长期复用；商用授权，开源级质量。
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/packs" class="btn-gold">浏览全部 Pack</a>
+          <a href="#free-sample" class="btn-outline border-brand-700 text-white hover:bg-brand-800">先看免费样例</a>
+        </div>
+        <div class="mt-10 flex gap-8 text-sm text-brand-300">
+          <div>
+            <div class="text-2xl font-bold text-white">中英对照</div>
+            <div>母语级双语资产</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold text-white">商用授权</div>
+            <div>可直接落进项目</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold text-white">一次购买</div>
+            <div>长期复用</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 精选 Pack -->
+  {showcase.length > 0 && (
+    <section class="container-wide py-16">
+      <div class="flex items-end justify-between">
+        <div>
+          <h2 class="text-3xl font-bold">精选 Pack</h2>
+          <p class="mt-2 text-brand-600">当下可直接购买的资产包。</p>
+        </div>
+        <a href="/packs" class="text-sm text-brand-700 underline">全部 →</a>
+      </div>
+      <div class="mt-8 grid gap-5 md:grid-cols-3">
+        {showcase.map((pack) => <PackCard pack={pack} />)}
+      </div>
+    </section>
+  )}
+
+  <!-- 价值主张 -->
+  <section class="bg-white py-16">
+    <div class="container-wide">
+      <h2 class="text-center text-3xl font-bold">为什么用 Asset Pack，而不是直接外包？</h2>
+      <p class="mx-auto mt-3 max-w-2xl text-center text-brand-600">
+        外包按字数计费、周期长、风格不一致；Asset Pack 一次买断、立即可用、风格预设。
+      </p>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        <div class="card">
+          <div class="text-gold-600 text-sm font-mono">01</div>
+          <h3 class="mt-2 text-lg font-bold">立即可用</h3>
+          <p class="mt-2 text-sm text-brand-600">下载即落进项目，不必等排期。原型期 / Demo 提交前最稳的素材来源。</p>
+        </div>
+        <div class="card">
+          <div class="text-gold-600 text-sm font-mono">02</div>
+          <h3 class="mt-2 text-lg font-bold">风格统一</h3>
+          <p class="mt-2 text-sm text-brand-600">同一个 Pack 内的台词/术语由叙事设计师统一调性，不会出现多外包译员的风格漂移。</p>
+        </div>
+        <div class="card">
+          <div class="text-gold-600 text-sm font-mono">03</div>
+          <h3 class="mt-2 text-lg font-bold">商用授权</h3>
+          <p class="mt-2 text-sm text-brand-600">购买的资产可直接用于商业项目，授权清晰，不牵扯二清与追诉风险。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 免费样例 CTA -->
+  <section id="free-sample" class="bg-brand-900 py-16 text-white">
+    <div class="container-wide flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
+      <div class="max-w-xl">
+        <h2 class="text-3xl font-bold text-white">先领一份免费样例</h2>
+        <p class="mt-3 text-brand-200">
+          留下邮箱，立即收到一份精选台词样例（中英对照 + 情绪标签）。订阅后续新 Pack 上架提醒，不发垃圾邮件。
+        </p>
+      </div>
+      <a href="/packs" class="btn-gold">去挑一份样例 →</a>
+    </div>
+  </section>
+</BaseLayout>

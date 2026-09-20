@@ -1,0 +1,402 @@
+[
+  {
+    "id": "01",
+    "category": "system-ui",
+    "zh": "体力",
+    "en": "Stamina",
+    "style_note": "UI 全大写时用 STAMINA",
+    "pitfall": "不要译 Energy，Energy 多用于能量槽"
+  },
+  {
+    "id": "02",
+    "category": "system-ui",
+    "zh": "抽卡",
+    "en": "Gacha",
+    "style_note": "名词统一 Gacha",
+    "pitfall": "动作“抽一次”用 pull / draw，不要混用"
+  },
+  {
+    "id": "03",
+    "category": "system-ui",
+    "zh": "签到",
+    "en": "Daily Check-in",
+    "style_note": "首字母大写",
+    "pitfall": "不要译 Sign-in（与登录混淆）"
+  },
+  {
+    "id": "04",
+    "category": "system-ui",
+    "zh": "公告",
+    "en": "Notices",
+    "style_note": "UI 标题用复数",
+    "pitfall": "单条公告用 Notice"
+  },
+  {
+    "id": "05",
+    "category": "system-ui",
+    "zh": "设置",
+    "en": "Settings",
+    "style_note": "UI 标题复数",
+    "pitfall": "不要用 Setup"
+  },
+  {
+    "id": "06",
+    "category": "system-ui",
+    "zh": "邮件",
+    "en": "Mail",
+    "style_note": "通用",
+    "pitfall": "不要用 Email（暗示外部电邮）"
+  },
+  {
+    "id": "07",
+    "category": "system-ui",
+    "zh": "商店",
+    "en": "Shop",
+    "style_note": "通用",
+    "pitfall": "充值入口用 Top-up，不要混"
+  },
+  {
+    "id": "08",
+    "category": "system-ui",
+    "zh": "充值",
+    "en": "Top-up",
+    "style_note": "动作",
+    "pitfall": "金额充值用 Top-up，不要用 Recharge"
+  },
+  {
+    "id": "09",
+    "category": "system-ui",
+    "zh": "月卡",
+    "en": "Monthly Pass",
+    "style_note": "专有名",
+    "pitfall": "也常见 30-Day Pass，全项目统一一种"
+  },
+  {
+    "id": "10",
+    "category": "system-ui",
+    "zh": "红点",
+    "en": "Badge",
+    "style_note": "通用",
+    "pitfall": "不要直译 red dot"
+  },
+  {
+    "id": "11",
+    "category": "combat",
+    "zh": "暴击",
+    "en": "Critical Hit",
+    "style_note": "战斗内简称 Crit",
+    "pitfall": "暴击率 Critical Rate"
+  },
+  {
+    "id": "12",
+    "category": "combat",
+    "zh": "连招",
+    "en": "Combo",
+    "style_note": "通用",
+    "pitfall": "连击数 Combo Count"
+  },
+  {
+    "id": "13",
+    "category": "combat",
+    "zh": "仇恨",
+    "en": "Aggro",
+    "style_note": "MMORPG 术语",
+    "pitfall": "副本里“拉仇恨”用 pull aggro"
+  },
+  {
+    "id": "14",
+    "category": "combat",
+    "zh": "闪避",
+    "en": "Dodge",
+    "style_note": "通用",
+    "pitfall": "数值“闪避率”用 Dodge Rate"
+  },
+  {
+    "id": "15",
+    "category": "combat",
+    "zh": "格挡",
+    "en": "Block",
+    "style_note": "通用",
+    "pitfall": "不要译 Parry（招架，是另一概念）"
+  },
+  {
+    "id": "16",
+    "category": "combat",
+    "zh": "招架",
+    "en": "Parry",
+    "style_note": "通用",
+    "pitfall": "不要与 Block 混"
+  },
+  {
+    "id": "17",
+    "category": "combat",
+    "zh": "击退",
+    "en": "Knockback",
+    "style_note": "通用",
+    "pitfall": "战术效果，全项目统一"
+  },
+  {
+    "id": "18",
+    "category": "combat",
+    "zh": "治疗量",
+    "en": "Healing Done",
+    "style_note": "数值",
+    "pitfall": "不要直译 heal amount"
+  },
+  {
+    "id": "19",
+    "category": "combat",
+    "zh": "持续伤害",
+    "en": "DoT (Damage over Time)",
+    "style_note": "缩写",
+    "pitfall": "玩家社群已通用 DoT"
+  },
+  {
+    "id": "20",
+    "category": "combat",
+    "zh": "范围伤害",
+    "en": "AoE (Area of Effect)",
+    "style_note": "缩写",
+    "pitfall": "玩家社群已通用 AoE"
+  },
+  {
+    "id": "21",
+    "category": "progression",
+    "zh": "等级",
+    "en": "Level",
+    "style_note": "缩写 Lv.",
+    "pitfall": "不要用 Lvl.（长度不一致）"
+  },
+  {
+    "id": "22",
+    "category": "progression",
+    "zh": "经验值",
+    "en": "EXP",
+    "style_note": "全大写",
+    "pitfall": "不要用 XP 混用，全项目统一一种"
+  },
+  {
+    "id": "23",
+    "category": "progression",
+    "zh": "突破",
+    "en": "Ascension",
+    "style_note": "通用",
+    "pitfall": "突破材料 Ascension Material"
+  },
+  {
+    "id": "24",
+    "category": "progression",
+    "zh": "升星",
+    "en": "Star-up",
+    "style_note": "通用",
+    "pitfall": "也常见 Star Enhancement，统一一种"
+  },
+  {
+    "id": "25",
+    "category": "progression",
+    "zh": "觉醒",
+    "en": "Awakening",
+    "style_note": "通用",
+    "pitfall": "不要译 Evolve"
+  },
+  {
+    "id": "26",
+    "category": "progression",
+    "zh": "潜能",
+    "en": "Potential",
+    "style_note": "数值",
+    "pitfall": "潜能点 Potential Points"
+  },
+  {
+    "id": "27",
+    "category": "progression",
+    "zh": "命座",
+    "en": "Constellation",
+    "style_note": "通用",
+    "pitfall": "个别项目用 Resonance，按项目设定"
+  },
+  {
+    "id": "28",
+    "category": "progression",
+    "zh": "天赋",
+    "en": "Talent",
+    "style_note": "通用",
+    "pitfall": "天赋树 Talent Tree"
+  },
+  {
+    "id": "29",
+    "category": "progression",
+    "zh": "装备",
+    "en": "Gear",
+    "style_note": "通用",
+    "pitfall": "不要用 Equipment（偏正式）"
+  },
+  {
+    "id": "30",
+    "category": "progression",
+    "zh": "强化",
+    "en": "Enhancement",
+    "style_note": "通用",
+    "pitfall": "武器强化 Weapon Enhancement"
+  },
+  {
+    "id": "31",
+    "category": "social",
+    "zh": "公会",
+    "en": "Guild",
+    "style_note": "通用",
+    "pitfall": "不要译 Clan（部落感）"
+  },
+  {
+    "id": "32",
+    "category": "social",
+    "zh": "好友",
+    "en": "Friend",
+    "style_note": "通用",
+    "pitfall": "好友列表 Friends List"
+  },
+  {
+    "id": "33",
+    "category": "social",
+    "zh": "私聊",
+    "en": "DM (Direct Message)",
+    "style_note": "缩写",
+    "pitfall": "不要用 Whisper（已过时）"
+  },
+  {
+    "id": "34",
+    "category": "social",
+    "zh": "世界频道",
+    "en": "World Chat",
+    "style_note": "通用",
+    "pitfall": "不要直译 global channel"
+  },
+  {
+    "id": "35",
+    "category": "social",
+    "zh": "组队",
+    "en": "Party",
+    "style_note": "通用",
+    "pitfall": "队长 Party Leader"
+  },
+  {
+    "id": "36",
+    "category": "social",
+    "zh": "申请入队",
+    "en": "Request to Join",
+    "style_note": "动作",
+    "pitfall": "不要用 apply（书面化）"
+  },
+  {
+    "id": "37",
+    "category": "social",
+    "zh": "屏蔽",
+    "en": "Block",
+    "style_note": "动作",
+    "pitfall": "名词屏蔽列表 Blocklist"
+  },
+  {
+    "id": "38",
+    "category": "social",
+    "zh": "举报",
+    "en": "Report",
+    "style_note": "动作",
+    "pitfall": "不要用 flag"
+  },
+  {
+    "id": "39",
+    "category": "social",
+    "zh": "点赞",
+    "en": "Like",
+    "style_note": "通用",
+    "pitfall": "不要用 thumb-up"
+  },
+  {
+    "id": "40",
+    "category": "social",
+    "zh": "头像",
+    "en": "Avatar",
+    "style_note": "通用",
+    "pitfall": "不要用 Profile Pic"
+  },
+  {
+    "id": "41",
+    "category": "narrative",
+    "zh": "主线",
+    "en": "Main Quest",
+    "style_note": "通用",
+    "pitfall": "不要用 Main Story（更宽泛）"
+  },
+  {
+    "id": "42",
+    "category": "narrative",
+    "zh": "支线",
+    "en": "Side Quest",
+    "style_note": "通用",
+    "pitfall": "不要用 Sub Quest"
+  },
+  {
+    "id": "43",
+    "category": "narrative",
+    "zh": "日常",
+    "en": "Daily Quest",
+    "style_note": "通用",
+    "pitfall": "不要用 Daily Mission"
+  },
+  {
+    "id": "44",
+    "category": "narrative",
+    "zh": "剧情 CG",
+    "en": "Cutscene",
+    "style_note": "通用",
+    "pitfall": "不要用 CG（英文玩家不熟）"
+  },
+  {
+    "id": "45",
+    "category": "narrative",
+    "zh": "对白",
+    "en": "Dialogue",
+    "style_note": "通用",
+    "pitfall": "对话系统 Dialogue System"
+  },
+  {
+    "id": "46",
+    "category": "narrative",
+    "zh": "跳过",
+    "en": "Skip",
+    "style_note": "通用",
+    "pitfall": "战斗跳过 Skip Battle"
+  },
+  {
+    "id": "47",
+    "category": "otome",
+    "zh": "羁绊",
+    "en": "Bond",
+    "style_note": "通用",
+    "pitfall": "不要用 Connection"
+  },
+  {
+    "id": "48",
+    "category": "otome",
+    "zh": "好感度",
+    "en": "Affinity",
+    "style_note": "数值",
+    "pitfall": "也常见 Intimacy，按项目统一"
+  },
+  {
+    "id": "49",
+    "category": "otome",
+    "zh": "约会",
+    "en": "Date",
+    "style_note": "通用",
+    "pitfall": "约会事件 Date Event"
+  },
+  {
+    "id": "50",
+    "category": "otome",
+    "zh": "卡牌",
+    "en": "Card",
+    "style_note": "通用",
+    "pitfall": "角色卡 Character Card"
+  }
+]

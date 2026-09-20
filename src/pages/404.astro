@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="页面未找到" description="404 — 你访问的页面不存在。">
+  <section class="container-wide flex min-h-[60vh] flex-col items-center justify-center py-20 text-center">
+    <div class="text-6xl font-serif text-gold-500">404</div>
+    <h1 class="mt-4 text-2xl font-bold">这里没有你要找的资产</h1>
+    <p class="mt-2 text-brand-500">页面可能已下架，或链接有误。</p>
+    <div class="mt-6 flex gap-3">
+      <a href="/" class="btn-primary">回首页</a>
+      <a href="/packs" class="btn-outline">浏览 Pack</a>
+    </div>
+  </section>
+</BaseLayout>

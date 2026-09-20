@@ -1,0 +1,35 @@
+---
+// Newsletter —— 站点级订阅（底部用）
+// 与 FreeSampleDownload 类似，但更简洁，用于通用邮件订阅
+const formId = import.meta.env.PUBLIC_CONVERTKIT_FORM_ID;
+const hasConvertKit = !!formId && formId !== 'your_convertkit_form_id_here';
+const thankYouUrl = new URL('/success', Astro.site ?? 'https://loreline.example.com').toString();
+---
+
+<div class="rounded-xl border border-brand-200 bg-white p-6">
+  <h3 class="text-lg font-bold text-brand-950">订阅新 Pack 上架提醒</h3>
+  <p class="mt-2 text-sm text-brand-600">
+    每月 1-2 封，只在新 Pack 上线或有深度本地化文章时发送。可随时退订。
+  </p>
+  {hasConvertKit ? (
+    <form
+      action={`https://app.convertkit.com/forms/${formId}/subscriptions`}
+      method="post"
+      class="mt-4 flex flex-col gap-3 sm:flex-row"
+    >
+      <input
+        type="email"
+        name="email"
+        required
+        placeholder="you@example.com"
+        class="flex-1 rounded-lg border border-brand-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-gold-500"
+      />
+      <input type="hidden" name="thank_you_url" value={thankYouUrl} />
+      <button type="submit" class="btn-primary whitespace-nowrap">订阅</button>
+    </form>
+  ) : (
+    <p class="mt-4 text-sm text-brand-400">
+      订阅功能将在 ConvertKit 配置后启用（见 .env.example）。
+    </p>
+  )}
+</div>

@@ -1,0 +1,99 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  /** OG 图绝对/相对路径，缺省用默认 */
+  ogImage?: string;
+  /** 不渲染导航与页脚（如购买后引导页可设 true） */
+  bare?: boolean;
+}
+
+const {
+  title = 'Loreline — 游戏本地化与叙事 Asset Pack',
+  description = '为独立游戏开发者与中小手游团队提供中英双语台词库、本地化术语表、叙事风格指南。可商用，一次购买长期复用。',
+  ogImage = '/og/loreline-default.png',
+  bare = false,
+} = Astro.props;
+
+const SITE = {
+  name: 'Loreline',
+  url: Astro.site ?? 'https://loreline.example.com',
+};
+const fullTitle = title.includes(SITE.name) ? title : `${title} · ${SITE.name}`;
+const canonical = new URL(Astro.url.pathname, SITE.url);
+const ogImageAbs = new URL(ogImage, SITE.url);
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageAbs} />
+    <meta property="og:locale" content="zh_CN" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageAbs} />
+
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body class="flex min-h-screen flex-col">
+    {!bare && (
+      <header class="border-b border-brand-200 bg-white/80 backdrop-blur sticky top-0 z-30">
+        <nav class="container-wide flex h-16 items-center justify-between">
+          <a href="/" class="flex items-center gap-2 no-underline hover:text-brand-900">
+            <span class="text-xl font-serif font-bold text-brand-900">Loreline</span>
+            <span class="hidden text-xs text-brand-400 sm:inline">叙事资产流水线</span>
+          </a>
+          <div class="flex items-center gap-6 text-sm">
+            <a href="/packs" class="no-underline text-brand-700 hover:text-brand-950">Packs</a>
+            <a href="/blog" class="no-underline text-brand-700 hover:text-brand-950">Blog</a>
+            <a href="/about" class="no-underline text-brand-700 hover:text-brand-950">关于</a>
+          </div>
+        </nav>
+      </header>
+    )}
+
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    {!bare && (
+      <footer class="mt-16 border-t border-brand-200 bg-brand-950 text-brand-200">
+        <div class="container-wide flex flex-col gap-6 py-10 md:flex-row md:justify-between">
+          <div class="max-w-sm">
+            <div class="text-lg font-serif font-bold text-white">Loreline</div>
+            <p class="mt-2 text-sm text-brand-300">
+              游戏本地化与叙事 Asset Pack。把稀缺叙事技能资产化，一次产出，长期复用。
+            </p>
+          </div>
+          <div class="flex flex-col gap-2 text-sm">
+            <a href="/packs" class="no-underline text-brand-300 hover:text-white">所有 Pack</a>
+            <a href="/blog" class="no-underline text-brand-300 hover:text-white">文章</a>
+            <a href="/about" class="no-underline text-brand-300 hover:text-white">关于品牌</a>
+          </div>
+        </div>
+        <div class="border-t border-brand-800 py-4 text-center text-xs text-brand-400">
+          © {year} Loreline. 保留所有权利。
+        </div>
+      </footer>
+    )}
+  </body>
+</html>

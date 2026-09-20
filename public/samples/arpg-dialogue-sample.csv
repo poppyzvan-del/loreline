@@ -1,0 +1,9 @@
+id,scene,emotion,zh,en,note
+01,combat-start,determined,来吧，我一向喜欢主动开场。,Come on. I like opening with the first move.,开场可用；语气轻快带自信
+04,boss,grave,这家伙……不在同一个量级。,This one's on a whole different level.,boss 首次遭遇；语气凝重
+07,low-hp,strained,还没倒下……就还能打。,Still on my feet. Still in this.,低血量触发；短促有力
+10,victory,relieved,收工。下一场什么时候来？,Done. When's the next one?,击杀后；冷静不张狂
+13,death,regret,这次……换我倒在前面了。,This time, I'm the one who goes down first.,阵亡；不煽情
+18,exploration,musing,这地方……以前应该有人住过。,Someone lived here once. You can feel it.,探索 idle；氛围感
+26,npc-talk,dry,又是"只有你能办到"？这话我今年听了不下十回。,"""Only you can do this."" Tenth time I've heard that this year.",NPC 任务；冷幽默
+30,hit-react,irritated,别再打同一个地方。,Don't keep hitting the same place.,受击反应；短促

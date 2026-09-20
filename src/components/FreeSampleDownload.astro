@@ -1,0 +1,60 @@
+---
+// FreeSampleDownload —— 免费样例下载
+// 已配置 ConvertKit 时：留邮箱换样例（收集 lead）
+// 未配置时降级：直接显示下载链接（不阻塞，但提示配置后可改为邮箱收集）
+interface Props {
+  samplePath?: string;
+  sampleCount?: number;
+  packTitle: string;
+}
+const { samplePath, sampleCount, packTitle } = Astro.props;
+const formId = import.meta.env.PUBLIC_CONVERTKIT_FORM_ID;
+const hasSample = !!samplePath;
+const hasConvertKit = !!formId && formId !== 'your_convertkit_form_id_here';
+const thankYouUrl = new URL('/success', Astro.site ?? 'https://loreline.example.com').toString();
+---
+
+<div class="rounded-xl border border-gold-500/40 bg-gold-500/5 p-6">
+  <div class="flex items-center gap-2">
+    <span class="badge-gold">免费样例</span>
+    {sampleCount && <span class="text-xs text-brand-500">含 {sampleCount} 条预览</span>}
+  </div>
+  <h3 class="mt-3 text-lg font-bold text-brand-950">{packTitle} · 免费样例</h3>
+  <p class="mt-2 text-sm text-brand-600">
+    留下邮箱，立即收到这份样例。订阅后不定期收到新 Pack 上架提醒，不发垃圾邮件，可随时退订。
+  </p>
+
+  {!hasSample && (
+    <p class="mt-4 text-sm text-brand-400">样例文件即将上传，敬请期待。</p>
+  )}
+
+  {hasSample && hasConvertKit && (
+    <form
+      action={`https://app.convertkit.com/forms/${formId}/subscriptions`}
+      method="post"
+      class="mt-4 flex flex-col gap-3 sm:flex-row"
+    >
+      <input
+        type="email"
+        name="email"
+        required
+        placeholder="you@example.com"
+        class="flex-1 rounded-lg border border-brand-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-gold-500"
+      />
+      <input type="hidden" name="fields[pack]" value={packTitle} />
+      <input type="hidden" name="thank_you_url" value={thankYouUrl} />
+      <button type="submit" class="btn-gold whitespace-nowrap">领取样例</button>
+    </form>
+  )}
+
+  {hasSample && !hasConvertKit && (
+    <div class="mt-4 flex flex-col gap-2">
+      <a href={samplePath} class="btn-gold w-full sm:w-auto" download>
+        下载免费样例
+      </a>
+      <span class="text-xs text-brand-400">
+        提示：在 .env 配置 PUBLIC_CONVERTKIT_FORM_ID 后，可改为邮箱收集模式
+      </span>
+    </div>
+  )}
+</div>

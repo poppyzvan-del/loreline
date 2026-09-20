@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Newsletter from '../components/Newsletter.astro';
+---
+
+<BaseLayout
+  title="关于 Loreline"
+  description="Loreline 是一个独立的游戏本地化与叙事 Asset Pack 品牌，由资深游戏叙事设计师与中英本地化专家创立。"
+>
+  <section class="container-wide py-16">
+    <h1 class="text-4xl font-bold md:text-5xl">关于 Loreline</h1>
+    <p class="mt-4 max-w-2xl text-lg text-brand-600">
+      把稀缺的叙事与本地化技能，做成可复用的数字资产。一次产出，长期复用。
+    </p>
+
+    <div class="mt-12 grid gap-12 md:grid-cols-3">
+      <div class="md:col-span-2 prose-loreline">
+        <h2>我们做什么</h2>
+        <p>
+          Loreline 为独立游戏开发者与中小手游团队提供可直接落进项目的数字资产包——
+          中英对照台词库、本地化术语表、叙事风格指南。每一个 Pack 都由资深叙事设计师与本地化专家打磨，
+          风格统一、调性可控、商用授权清晰。
+        </p>
+
+        <h2>为什么做这件事</h2>
+        <p>
+          独立团队与中小手游项目在做本地化时，常面临两难：直接外包按字数计费、周期长、多人译员风格漂移；
+          自己招全职叙事/本地化又养不起。我们见过太多项目因为本地化质量不稳定，在出海时被海外玩家吐槽"机翻味"。
+        </p>
+        <p>
+          Asset Pack 是第三条路：一次买断、立即可用、风格预设。它不替代定制需求，
+          但能解决 80% 的"需要一批说得过去的中英台词/术语"的场景，让团队把预算留给真正需要定制的部分。
+        </p>
+
+        <h2>谁在做</h2>
+        <p>
+          Loreline 由一位资深游戏叙事设计师创立——
+          曾在腾讯 AAA ARPG 项目与 IGG 移动项目担任叙事设计，
+          并担任过主流女性向手游的主笔。母语中文，英语近母语水平（IELTS 7.0），
+          有路透社与国际公关客户的英中翻译经验。
+        </p>
+        <p>
+          品牌独立运作，与过往雇主作品无关联。所有 Pack 均为全新创作，
+          不复用任何雇主作品的素材、角色名或世界观。
+        </p>
+
+        <h2>授权与边界</h2>
+        <ul>
+          <li>购买的 Pack 可用于商业项目，授权清晰。</li>
+          <li>禁止将 Pack 本身转售或二次分发。</li>
+          <li>资产为"可迁移技法模板"性质，不绑定具体 IP。</li>
+        </ul>
+
+        <h2>后续计划</h2>
+        <p>
+          持续按月新增 Pack，覆盖更多品类（ARPG、女性向、SLG、休闲）。
+          后期会引入订阅制——一次订阅，每周/月收到新资产。
+          也计划开放 API，让开发者在自己工具里直接调资产库。
+        </p>
+      </div>
+
+      <aside class="space-y-6">
+        <Newsletter />
+        <div class="card">
+          <h3 class="font-bold">联系</h3>
+          <p class="mt-2 text-sm text-brand-600">
+            合作、定制、反馈：在 GitHub Issue 或购买后邮件回复里联系。
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>

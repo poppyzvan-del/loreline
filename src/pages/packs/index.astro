@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PackCard from '../../components/PackCard.astro';
+import { getCollection } from 'astro:content';
+
+const allPacks = (await getCollection('packs', ({ data }) => !data.draft))
+  .sort((a, b) => +b.data.publishedAt - +a.data.publishedAt);
+
+const categories = Array.from(new Set(allPacks.map((p) => p.data.category)));
+const categoryLabel: Record<string, string> = {
+  dialogue: '台词库',
+  glossary: '术语表',
+  'style-guide': '风格指南',
+  reference: '参考集',
+  bundle: '组合包',
+};
+---
+
+<BaseLayout
+  title="全部 Asset Pack"
+  description="Loreline 全部可购买的本地化与叙事 Asset Pack：中英对照台词库、术语表、风格指南。"
+>
+  <section class="container-wide py-12">
+    <h1 class="text-3xl font-bold md:text-4xl">全部 Pack</h1>
+    <p class="mt-2 text-brand-600">按上架时间倒序。点击卡片查看详情与免费样例。</p>
+
+    {categories.length > 0 && (
+      <div class="mt-6 flex flex-wrap gap-2">
+        <a href="/packs" class="badge">全部 ({allPacks.length})</a>
+        {categories.map((cat) => {
+          const count = allPacks.filter((p) => p.data.category === cat).length;
+          return <span class="badge">{categoryLabel[cat] ?? cat} ({count})</span>;
+        })}
+      </div>
+    )}
+
+    {allPacks.length === 0 ? (
+      <div class="mt-12 rounded-xl border border-dashed border-brand-300 p-12 text-center">
+        <p class="text-lg text-brand-500">尚无上架 Pack。</p>
+        <p class="mt-2 text-sm text-brand-400">第一批资产即将上架，欢迎先订阅提醒。</p>
+      </div>
+    ) : (
+      <div class="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {allPacks.map((pack) => <PackCard pack={pack} />)}
+      </div>
+    )}
+  </section>
+</BaseLayout>

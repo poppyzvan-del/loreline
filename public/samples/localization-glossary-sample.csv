@@ -1,0 +1,9 @@
+id,category,zh,en,style_note,pitfall
+01,system-ui,体力,Stamina,UI 全大写时用 STAMINA,不要译 Energy，Energy 多用于能量槽
+02,system-ui,抽卡,Gacha,名词统一 Gacha,动作"抽一次"用 pull/draw，不要混用
+03,system-ui,签到,Daily Check-in,首字母大写,不要译 Sign-in（与登录混淆）
+04,system-ui,充值,Top-up,动作,金额充值用 Top-up，不要用 Recharge
+11,combat,暴击,Critical Hit,战斗内简称 Crit,暴击率 Critical Rate
+19,combat,持续伤害,DoT (Damage over Time),缩写,玩家社群已通用 DoT
+31,social,公会,Guild,通用,不要译 Clan（部落感）
+47,otome,羁绊,Bond,通用,不要用 Connection

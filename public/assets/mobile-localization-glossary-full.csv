@@ -1,0 +1,51 @@
+﻿id,category,zh,en,style_note,pitfall
+01,system-ui,体力,Stamina,UI 全大写时用 STAMINA,不要译 Energy，Energy 多用于能量槽
+02,system-ui,抽卡,Gacha,名词统一 Gacha,动作“抽一次”用 pull / draw，不要混用
+03,system-ui,签到,Daily Check-in,首字母大写,不要译 Sign-in（与登录混淆）
+04,system-ui,公告,Notices,UI 标题用复数,单条公告用 Notice
+05,system-ui,设置,Settings,UI 标题复数,不要用 Setup
+06,system-ui,邮件,Mail,通用,不要用 Email（暗示外部电邮）
+07,system-ui,商店,Shop,通用,充值入口用 Top-up，不要混
+08,system-ui,充值,Top-up,动作,金额充值用 Top-up，不要用 Recharge
+09,system-ui,月卡,Monthly Pass,专有名,也常见 30-Day Pass，全项目统一一种
+10,system-ui,红点,Badge,通用,不要直译 red dot
+11,combat,暴击,Critical Hit,战斗内简称 Crit,暴击率 Critical Rate
+12,combat,连招,Combo,通用,连击数 Combo Count
+13,combat,仇恨,Aggro,MMORPG 术语,副本里“拉仇恨”用 pull aggro
+14,combat,闪避,Dodge,通用,数值“闪避率”用 Dodge Rate
+15,combat,格挡,Block,通用,不要译 Parry（招架，是另一概念）
+16,combat,招架,Parry,通用,不要与 Block 混
+17,combat,击退,Knockback,通用,战术效果，全项目统一
+18,combat,治疗量,Healing Done,数值,不要直译 heal amount
+19,combat,持续伤害,DoT (Damage over Time),缩写,玩家社群已通用 DoT
+20,combat,范围伤害,AoE (Area of Effect),缩写,玩家社群已通用 AoE
+21,progression,等级,Level,缩写 Lv.,不要用 Lvl.（长度不一致）
+22,progression,经验值,EXP,全大写,不要用 XP 混用，全项目统一一种
+23,progression,突破,Ascension,通用,突破材料 Ascension Material
+24,progression,升星,Star-up,通用,也常见 Star Enhancement，统一一种
+25,progression,觉醒,Awakening,通用,不要译 Evolve
+26,progression,潜能,Potential,数值,潜能点 Potential Points
+27,progression,命座,Constellation,通用,个别项目用 Resonance，按项目设定
+28,progression,天赋,Talent,通用,天赋树 Talent Tree
+29,progression,装备,Gear,通用,不要用 Equipment（偏正式）
+30,progression,强化,Enhancement,通用,武器强化 Weapon Enhancement
+31,social,公会,Guild,通用,不要译 Clan（部落感）
+32,social,好友,Friend,通用,好友列表 Friends List
+33,social,私聊,DM (Direct Message),缩写,不要用 Whisper（已过时）
+34,social,世界频道,World Chat,通用,不要直译 global channel
+35,social,组队,Party,通用,队长 Party Leader
+36,social,申请入队,Request to Join,动作,不要用 apply（书面化）
+37,social,屏蔽,Block,动作,名词屏蔽列表 Blocklist
+38,social,举报,Report,动作,不要用 flag
+39,social,点赞,Like,通用,不要用 thumb-up
+40,social,头像,Avatar,通用,不要用 Profile Pic
+41,narrative,主线,Main Quest,通用,不要用 Main Story（更宽泛）
+42,narrative,支线,Side Quest,通用,不要用 Sub Quest
+43,narrative,日常,Daily Quest,通用,不要用 Daily Mission
+44,narrative,剧情 CG,Cutscene,通用,不要用 CG（英文玩家不熟）
+45,narrative,对白,Dialogue,通用,对话系统 Dialogue System
+46,narrative,跳过,Skip,通用,战斗跳过 Skip Battle
+47,otome,羁绊,Bond,通用,不要用 Connection
+48,otome,好感度,Affinity,数值,也常见 Intimacy，按项目统一
+49,otome,约会,Date,通用,约会事件 Date Event
+50,otome,卡牌,Card,通用,角色卡 Character Card

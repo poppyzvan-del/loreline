@@ -1,0 +1,41 @@
+---
+// BuyButton —— Lemon Squeezy 结账按钮
+// 未配置 lsCheckoutUrl 时显示"即将开放"占位，不破坏构建
+interface Props {
+  checkoutUrl?: string;
+  price: number;
+  originalPrice?: number;
+  label?: string;
+  size?: 'md' | 'lg';
+}
+const {
+  checkoutUrl,
+  price,
+  originalPrice,
+  label = '立即购买',
+  size = 'md',
+} = Astro.props;
+const configured = !!checkoutUrl && checkoutUrl.startsWith('http');
+const sizeClass = size === 'lg' ? 'px-6 py-3 text-base' : 'px-5 py-2.5 text-sm';
+---
+
+{configured ? (
+  <a
+    href={checkoutUrl}
+    class={`btn-gold ${sizeClass} w-full sm:w-auto`}
+    data-ls-checkout={checkoutUrl}
+  >
+    {label}
+    {originalPrice && originalPrice > price && (
+      <span class="ml-1 text-xs text-gold-600/70 line-through">${originalPrice}</span>
+    )}
+    <span class="ml-1">· ${price}</span>
+  </a>
+) : (
+  <div class="flex flex-col items-start gap-2">
+    <span class={`btn-gold ${sizeClass} w-full cursor-not-allowed opacity-60 sm:w-auto`} aria-disabled="true">
+      购买即将开放
+    </span>
+    <span class="text-xs text-brand-400">结账链接将在 Lemon Squeezy 配置后自动启用</span>
+  </div>
+)}

@@ -1,0 +1,24 @@
+{
+  "name": "loreline",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Loreline — 游戏本地化/叙事 Asset Pack 售卖与订阅站",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^4.16.18",
+    "@astrojs/mdx": "^3.1.9",
+    "@astrojs/rss": "^4.0.11",
+    "@astrojs/sitemap": "^3.2.1",
+    "@astrojs/tailwind": "^5.1.4",
+    "tailwindcss": "^3.4.17"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  }
+}

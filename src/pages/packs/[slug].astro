@@ -1,0 +1,138 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BuyButton from '../../components/BuyButton.astro';
+import FreeSampleDownload from '../../components/FreeSampleDownload.astro';
+import PackCard from '../../components/PackCard.astro';
+
+export async function getStaticPaths() {
+  const packs = await getCollection('packs', ({ data }) => !data.draft);
+  return packs.map((pack) => ({
+    params: { slug: pack.slug },
+    props: { pack },
+  }));
+}
+
+const { pack } = Astro.props;
+const { Content } = await render(pack);
+const { data } = pack;
+
+const categoryLabel: Record<string, string> = {
+  dialogue: '台词库',
+  glossary: '术语表',
+  'style-guide': '风格指南',
+  reference: '参考集',
+  bundle: '组合包',
+};
+
+const related = (await getCollection('packs', ({ data: d }) => !d.draft && d.category === data.category))
+  .filter((p) => p.slug !== pack.slug)
+  .slice(0, 3);
+
+const isFree = data.price === 0;
+---
+
+<BaseLayout
+  title={data.title}
+  description={data.description}
+  ogImage={data.featureImage ?? '/og/loreline-default.png'}
+>
+  <article class="container-wide py-12">
+    <!-- 面包屑 -->
+    <nav class="mb-6 text-sm text-brand-500">
+      <a href="/packs" class="no-underline hover:text-brand-700">Packs</a>
+      <span class="mx-2">/</span>
+      <span>{categoryLabel[data.category] ?? data.category}</span>
+    </nav>
+
+    <div class="grid gap-10 lg:grid-cols-[1fr_360px]">
+      <!-- 主内容 -->
+      <div>
+        <span class="badge">{categoryLabel[data.category] ?? data.category}</span>
+        <h1 class="mt-3 text-3xl font-bold md:text-4xl">{data.title}</h1>
+        {data.subtitle && <p class="mt-2 text-lg text-brand-600">{data.subtitle}</p>}
+        <p class="mt-4 text-brand-700">{data.description}</p>
+
+        <div class="mt-6 flex flex-wrap gap-2">
+          {data.applicableGenres.map((g) => <span class="badge-gold">{g}</span>)}
+          {data.languages.map((l) => <span class="badge">{l.toUpperCase()}</span>)}
+        </div>
+
+        {data.entryCount && (
+          <p class="mt-4 text-sm text-brand-500">规模：{data.entryCount}</p>
+        )}
+
+        <div class="prose-loreline mt-10">
+          <Content />
+        </div>
+      </div>
+
+      <!-- 侧边购买栏 -->
+      <aside class="lg:sticky lg:top-20 lg:self-start">
+        <div class="card">
+          <div class="flex items-baseline gap-2">
+            {isFree ? (
+              <span class="text-2xl font-bold text-gold-600">免费</span>
+            ) : (
+              <span class="text-3xl font-bold text-brand-950">${data.price}</span>
+            )}
+            {data.originalPrice && data.originalPrice > data.price && (
+              <span class="text-sm text-brand-400 line-through">${data.originalPrice}</span>
+            )}
+          </div>
+
+          {isFree ? (
+            <a href={data.samplePath ?? '#'} class="btn-gold mt-4 w-full" download>
+              免费下载
+            </a>
+          ) : (
+            <div class="mt-4">
+              <BuyButton
+                checkoutUrl={data.lsCheckoutUrl}
+                price={data.price}
+                originalPrice={data.originalPrice}
+                size="lg"
+              />
+            </div>
+          )}
+
+          <dl class="mt-6 space-y-3 text-sm">
+            <div class="flex justify-between">
+              <dt class="text-brand-500">交付方式</dt>
+              <dd class="text-right text-brand-700">购买后即时邮件发送下载链接</dd>
+            </div>
+            <div class="flex justify-between">
+              <dt class="text-brand-500">商用授权</dt>
+              <dd class="text-right text-brand-700">可商用，禁转售</dd>
+            </div>
+            <div class="flex justify-between">
+              <dt class="text-brand-500">语言</dt>
+              <dd class="text-right text-brand-700">{data.languages.map((l) => l.toUpperCase()).join(' / ')}</dd>
+            </div>
+          </dl>
+
+          <p class="mt-4 text-xs text-brand-400">{data.license}</p>
+        </div>
+
+        {data.samplePath && !isFree && (
+          <div class="mt-5">
+            <FreeSampleDownload
+              samplePath={data.samplePath}
+              sampleCount={data.sampleCount}
+              packTitle={data.title}
+            />
+          </div>
+        )}
+      </aside>
+    </div>
+
+    {related.length > 0 && (
+      <section class="mt-16">
+        <h2 class="text-2xl font-bold">相关 Pack</h2>
+        <div class="mt-6 grid gap-5 md:grid-cols-3">
+          {related.map((p) => <PackCard pack={p} />)}
+        </div>
+      </section>
+    )}
+  </article>
+</BaseLayout>

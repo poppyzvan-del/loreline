@@ -1,0 +1,43 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  pack: CollectionEntry<'packs'>;
+}
+const { pack } = Astro.props;
+const { data } = pack;
+const href = `/packs/${pack.slug}`;
+const categoryLabel: Record<string, string> = {
+  dialogue: '台词库',
+  glossary: '术语表',
+  'style-guide': '风格指南',
+  reference: '参考集',
+  bundle: '组合包',
+};
+---
+
+<a href={href} class="card flex flex-col no-underline hover:border-brand-400">
+  <div class="flex items-start justify-between gap-3">
+    <span class="badge">{categoryLabel[data.category] ?? data.category}</span>
+    <span class="text-sm font-mono text-brand-400">#{pack.slug}</span>
+  </div>
+  <h3 class="mt-3 text-lg font-bold text-brand-950">{data.title}</h3>
+  {data.subtitle && <p class="text-sm text-brand-500">{data.subtitle}</p>}
+  <p class="mt-2 flex-1 text-sm text-brand-600 line-clamp-3">{data.description}</p>
+  <div class="mt-4 flex items-end justify-between border-t border-brand-100 pt-3">
+    <div>
+      {data.price === 0 ? (
+        <span class="text-lg font-bold text-gold-600">免费</span>
+      ) : (
+        <div class="flex items-baseline gap-2">
+          <span class="text-lg font-bold text-brand-950">${data.price}</span>
+          {data.originalPrice && (
+            <span class="text-sm text-brand-400 line-through">${data.originalPrice}</span>
+          )}
+        </div>
+      )}
+      {data.entryCount && <div class="text-xs text-brand-400">{data.entryCount}</div>}
+    </div>
+    <span class="text-sm font-medium text-brand-700">查看详情 →</span>
+  </div>
+</a>
